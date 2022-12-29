@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return ResponsiveSizer(
         builder: (context, orientation, screenType) => GetMaterialApp(
               debugShowCheckedModeBanner: false,
-              initialRoute: Routes.LOGIN,
+              initialRoute: Routes.REGISTER,
               getPages: AppPages.routes,
             ));
   }
