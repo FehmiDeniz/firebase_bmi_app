@@ -1,3 +1,4 @@
+import 'package:animate_do/animate_do.dart';
 import 'package:firebase_bmi_app/modules/register/register_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -33,8 +34,10 @@ class RegisterScreen extends GetView<RegisterController> {
                       color: const Color(0xff2F80ED),
                       fontWeight: FontWeight.bold),
                 ),
-                MailTextField(),
-                PasswordTextField(),
+                uiTextfield("Email", emailController,
+                    TextInputType.emailAddress, false),
+                uiTextfield("Password", passwordController,
+                    TextInputType.visiblePassword, true),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -47,27 +50,31 @@ class RegisterScreen extends GetView<RegisterController> {
                       Row(
                         children: [
                           Text(
-                            "Already Member? ",
+                            "Already Member?  ",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.sp),
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.LOGIN);
+                              Get.to(LoginScreen(),
+                                  duration: Duration(milliseconds: 2500),
+                                  transition: Transition.circularReveal);
                             },
                             child: Text(
                               "Login",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
-                                  .copyWith(color: Colors.white),
+                                  .copyWith(
+                                      color: Colors.white, fontSize: 19.sp),
                             ),
                           ),
                         ],
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            side: const BorderSide(color: Colors.white),
+                            side:
+                                const BorderSide(color: Colors.white, width: 2),
                             backgroundColor: Colors.transparent,
                             elevation: 0,
                             foregroundColor: Colors.white),

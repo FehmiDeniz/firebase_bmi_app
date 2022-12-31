@@ -1,10 +1,14 @@
 import 'package:firebase_bmi_app/modules/login/login_controller.dart';
+import 'package:firebase_bmi_app/modules/register/register_screen.dart';
 import 'package:firebase_bmi_app/roots/app_roots.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../../components/components.dart';
+
+TextEditingController emailController = TextEditingController();
+TextEditingController passwordController = TextEditingController();
 
 class LoginScreen extends GetView<LoginController> {
   const LoginScreen({super.key});
@@ -32,8 +36,10 @@ class LoginScreen extends GetView<LoginController> {
                       color: const Color(0xff2F80ED),
                       fontWeight: FontWeight.bold),
                 ),
-                MailTextField(),
-                PasswordTextField(),
+                uiTextfield("Email", emailController,
+                    TextInputType.emailAddress, false),
+                uiTextfield("Password", passwordController,
+                    TextInputType.visiblePassword, true),
                 SizedBox(
                   height: 25.h,
                 ),
@@ -46,27 +52,31 @@ class LoginScreen extends GetView<LoginController> {
                       Row(
                         children: [
                           Text(
-                            "New Here? ",
+                            "New Here?  ",
                             style:
                                 TextStyle(color: Colors.white, fontSize: 16.sp),
                           ),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.REGISTER);
+                              Get.to(RegisterScreen(),
+                                  duration: Duration(milliseconds: 2500),
+                                  transition: Transition.circularReveal);
                             },
                             child: Text(
                               "Register",
                               style: Theme.of(context)
                                   .textTheme
                                   .headline6!
-                                  .copyWith(color: Colors.white),
+                                  .copyWith(
+                                      color: Colors.white, fontSize: 19.sp),
                             ),
                           ),
                         ],
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            side: const BorderSide(color: Colors.white),
+                            side:
+                                const BorderSide(color: Colors.white, width: 2),
                             backgroundColor: Colors.transparent,
                             elevation: 0,
                             foregroundColor: Colors.white),
