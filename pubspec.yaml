@@ -39,6 +39,9 @@ dependencies:
   get: ^4.6.5
   responsive_sizer: ^3.1.1
   animate_do: ^3.0.2
+  firebase_core: ^2.4.1
+  firebase_auth: ^4.2.4
+  cloud_firestore: ^4.3.1
   
 
 dev_dependencies:

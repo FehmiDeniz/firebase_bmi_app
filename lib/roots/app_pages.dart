@@ -19,7 +19,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.LOGIN,
-      page: () => const LoginScreen(),
+      page: () => LoginScreen(),
       binding: LoginBinding(),
     ),
     GetPage(
@@ -29,7 +29,7 @@ abstract class AppPages {
     ),
     GetPage(
       name: Routes.REGISTER,
-      page: () => const RegisterScreen(),
+      page: () => RegisterScreen(),
       binding: RegisterBinding(),
     )
   ];
