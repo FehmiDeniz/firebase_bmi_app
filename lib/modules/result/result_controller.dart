@@ -1,16 +1,43 @@
+import 'dart:ffi';
 import 'dart:math';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_bmi_app/modules/home/home_controller.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class ResultController extends GetxController {
-  double? bmi = 30;
-
-  double? result(double weight, double height) {
-    bmi = weight / (pow(2, height / 100));
-    return bmi;
+  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  double? bmi;
+  HomeControlller homeControlller = HomeControlller();
+  @override
+  void onInit() async {
+    var fireData = await firestore
+        .collection('users')
+        .doc(FirebaseAuth.instance.currentUser!.uid)
+        .collection("data")
+        .get();
+    var x = homeControlller.heightController.text;
+    var y = homeControlller.weightController.text;
+    // var x = fireData.docs[4].data()["weight"];
+    // var y = fireData.docs[4].data()["height"];
+    // bmi = (x / (pow(2, y / 100))) ;
+    // bmi = double.tryParse(x + y);
+    print(bmi);
+    super.onInit();
   }
 
-  String getResult(bmi) {
+  // getLastData() async {
+  //   // print(fireData.docs[4].data()["weight"]);
+  // }
+
+  // double? result(double weight, double height) {
+  //   bmi = weight / (pow(2, height / 100));
+  //   return bmi;
+  // }
+
+  getResult(bmi) async {
     if (bmi! < 18.50) {
       return ("AŞIRI ZAYIF");
     } else if (bmi! >= 18.50 && bmi! <= 24.90) {
@@ -24,7 +51,7 @@ class ResultController extends GetxController {
     }
   }
 
-  String getInfo(bmi) {
+  getInfo(bmi) async {
     if (bmi! < 18.50) {
       return ("Aşırı Zayıfsınız Yemek Yemelisin");
     } else if (bmi! >= 18.50 && bmi! <= 24.90) {
