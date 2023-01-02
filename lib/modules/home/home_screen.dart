@@ -43,8 +43,8 @@ class HomeScreen extends GetView<HomeControlller> {
                   backgroundColor: Colors.transparent,
                   elevation: 0,
                   foregroundColor: Colors.white),
-              onPressed: () {
-                controller.dataAdd();
+              onPressed: () async {
+                await controller.dataAdd();
                 controller.heightController.text = "";
                 controller.weightController.text = "";
               },

@@ -20,13 +20,13 @@ class ResultScreen extends GetView<ResultController> {
               "Your BMI SCORE",
               style: Theme.of(context).textTheme.headline4,
             ),
-            // Text(
-            //
-            //   style: Theme.of(context)
-            //       .textTheme
-            //       .headline3!
-            //       .copyWith(color: Colors.red),
-            // ),
+            Text(
+              controller.bmi.toString(),
+              style: Theme.of(context)
+                  .textTheme
+                  .headline3!
+                  .copyWith(color: Colors.red),
+            ),
             Text(controller.getResult(controller.bmi),
                 style: Theme.of(context).textTheme.headline5!),
             Padding(
@@ -40,6 +40,15 @@ class ResultScreen extends GetView<ResultController> {
               },
               child: const Text(
                 "Refresh!",
+                style: TextStyle(color: Colors.blueGrey),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                // controller.getLastData();
+              },
+              child: const Text(
+                "Get Last!",
                 style: TextStyle(color: Colors.blueGrey),
               ),
             )
