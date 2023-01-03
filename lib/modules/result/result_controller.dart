@@ -1,6 +1,3 @@
-import 'dart:ffi';
-import 'dart:math';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_bmi_app/modules/home/home_controller.dart';
@@ -9,7 +6,7 @@ import 'package:get/get.dart';
 
 class ResultController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  double? bmi;
+  double? bmi = 30;
   HomeControlller homeControlller = HomeControlller();
   @override
   void onInit() async {
@@ -18,13 +15,17 @@ class ResultController extends GetxController {
         .doc(FirebaseAuth.instance.currentUser!.uid)
         .collection("data")
         .get();
-    var x = homeControlller.heightController.text;
-    var y = homeControlller.weightController.text;
-    // var x = fireData.docs[4].data()["weight"];
-    // var y = fireData.docs[4].data()["height"];
-    // bmi = (x / (pow(2, y / 100))) ;
-    // bmi = double.tryParse(x + y);
-    print(bmi);
+
+    var x = fireData.docs.last["weight"];
+    var y = fireData.docs.last["height"];
+    print(x + " " + y);
+
+    // bmi = (x / (pow(2, y / 100)));
+    // print(bmi);
+    // print(bmi.runtimeType);
+    // print((x + y));
+    // // bmi = double.tryParse(x + y);
+    // print(x + y);
     super.onInit();
   }
 

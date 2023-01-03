@@ -18,19 +18,21 @@ abstract class AppPages {
       binding: HomeBindings(),
     ),
     GetPage(
-      name: Routes.LOGIN,
-      page: () => LoginScreen(),
-      binding: LoginBinding(),
-    ),
+        name: Routes.LOGIN,
+        page: () => LoginScreen(),
+        binding: LoginBinding(),
+        transitionDuration: const Duration(milliseconds: 2500),
+        transition: Transition.circularReveal),
     GetPage(
       name: Routes.RESULT,
       page: () => const ResultScreen(),
       binding: ResultBinding(),
     ),
     GetPage(
-      name: Routes.REGISTER,
-      page: () => RegisterScreen(),
-      binding: RegisterBinding(),
-    )
+        name: Routes.REGISTER,
+        page: () => RegisterScreen(),
+        binding: RegisterBinding(),
+        transitionDuration: const Duration(milliseconds: 2500),
+        transition: Transition.circularReveal)
   ];
 }

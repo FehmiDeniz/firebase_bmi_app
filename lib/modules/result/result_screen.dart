@@ -27,11 +27,11 @@ class ResultScreen extends GetView<ResultController> {
                   .headline3!
                   .copyWith(color: Colors.red),
             ),
-            Text(controller.getResult(controller.bmi),
+            Text("controller.getResult(controller.bmi),",
                 style: Theme.of(context).textTheme.headline5!),
             Padding(
               padding: const EdgeInsets.all(13.0),
-              child: Text(controller.getInfo(controller.bmi),
+              child: Text("controller.getInfo(controller.bmi),",
                   style: Theme.of(context).textTheme.headline6!),
             ),
             TextButton(

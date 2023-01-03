@@ -5,7 +5,10 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 Container uiTextfield(text, controller, inputType, bool obscure) {
   const value = 0xff2F80ED;
   return Container(
-    margin: EdgeInsets.only(right: 8.w, top: 3.h),
+    margin: EdgeInsets.only(
+      right: 8.w,
+      top: 2.h,
+    ),
     child: TextFormField(
       obscureText: obscure,
       keyboardType: inputType,

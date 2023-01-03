@@ -23,7 +23,7 @@ class RegisterScreen extends GetView<RegisterController> {
           resizeToAvoidBottomInset: false,
           backgroundColor: Colors.transparent,
           body: Padding(
-            padding: EdgeInsets.only(top: 8.h, left: 6.w),
+            padding: EdgeInsets.only(left: 6.w),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -39,7 +39,7 @@ class RegisterScreen extends GetView<RegisterController> {
                 uiTextfield("Password", controller.passwordController,
                     TextInputType.visiblePassword, true),
                 SizedBox(
-                  height: 25.h,
+                  height: 30.h,
                 ),
                 Padding(
                     padding: EdgeInsets.only(right: 8.w, bottom: 1.3.h),
@@ -57,9 +57,6 @@ class RegisterScreen extends GetView<RegisterController> {
                               ),
                               InkWell(
                                 onTap: () {
-                                  // Get.to(LoginScreen(),
-                                  //     duration: Duration(milliseconds: 2500),
-                                  //     transition: Transition.circularReveal);
                                   Get.toNamed(Routes.LOGIN);
                                 },
                                 child: Text(
