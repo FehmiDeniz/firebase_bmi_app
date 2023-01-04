@@ -6,7 +6,9 @@ import 'package:get/get.dart';
 
 class ResultController extends GetxController {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
-  double? bmi = 30;
+  RxDouble bmi = 0.0.obs;
+  RxString resultData = "".obs;
+  RxString infoData = "".obs;
   HomeControlller homeControlller = HomeControlller();
   @override
   void onInit() async {
@@ -16,50 +18,39 @@ class ResultController extends GetxController {
         .collection("data")
         .get();
 
-    var x = fireData.docs.last["weight"];
-    var y = fireData.docs.last["height"];
-    print(x + " " + y);
+    var height = double.parse(fireData.docs.last["height"]) / 100;
+    var weight = double.parse(fireData.docs.last["weight"]);
 
-    // bmi = (x / (pow(2, y / 100)));
-    // print(bmi);
-    // print(bmi.runtimeType);
-    // print((x + y));
-    // // bmi = double.tryParse(x + y);
-    // print(x + y);
+    bmi.value = weight / (height * height);
+    print(bmi.value);
+    resultData.value = getResult();
+    infoData.value = getInfo();
+
     super.onInit();
   }
 
-  // getLastData() async {
-  //   // print(fireData.docs[4].data()["weight"]);
-  // }
-
-  // double? result(double weight, double height) {
-  //   bmi = weight / (pow(2, height / 100));
-  //   return bmi;
-  // }
-
-  getResult(bmi) async {
-    if (bmi! < 18.50) {
+  getResult() {
+    if (bmi.value < 18.50) {
       return ("AŞIRI ZAYIF");
-    } else if (bmi! >= 18.50 && bmi! <= 24.90) {
+    } else if (bmi.value! >= 18.50 && bmi.value! <= 24.90) {
       return ("NORMAL");
-    } else if (bmi! > 24.90 && bmi! <= 29.50) {
+    } else if (bmi.value! > 24.90 && bmi! <= 29.50) {
       return ("ŞİŞMAN");
-    } else if (bmi! > 29.50 && bmi! <= 39.90) {
+    } else if (bmi.value! > 29.50 && bmi! <= 39.90) {
       return ("OBEZİTE");
     } else {
       return ("YÜKSEK OBEZİTE");
     }
   }
 
-  getInfo(bmi) async {
-    if (bmi! < 18.50) {
+  getInfo() {
+    if (bmi.value < 18.50) {
       return ("Aşırı Zayıfsınız Yemek Yemelisin");
-    } else if (bmi! >= 18.50 && bmi! <= 24.90) {
+    } else if (bmi.value! >= 18.50 && bmi! <= 24.90) {
       return ("Kilonuz ideal");
-    } else if (bmi! > 24.90 && bmi! <= 29.50) {
+    } else if (bmi.value! > 24.90 && bmi! <= 29.50) {
       return ("Hafif Kilo verebilirsiniz");
-    } else if (bmi! > 29.50 && bmi! <= 39.90) {
+    } else if (bmi.value! > 29.50 && bmi! <= 39.90) {
       return ("Çok fazla Kilon var. Spora Gidebilirsin");
     } else {
       return ("Aşırı Kilon var,hastalık yapabilir. Acil bir diyetisyenle görüşmelisin");

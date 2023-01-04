@@ -38,7 +38,7 @@ class LoginScreen extends GetView<LoginController> {
                   uiTextfield("Password", controller.passwordController,
                       TextInputType.visiblePassword, true),
                   SizedBox(
-                    height: 30.h,
+                    height: 28.5.h,
                   ),
                   Padding(
                       padding: EdgeInsets.only(right: 8.w, bottom: 1.3.h),
